@@ -8,7 +8,7 @@ class AccountNumber {
 
     //oblicza sume kontrolna i zwraca wartosc true gdy jest poprawna lub false w przeciwnym przypadku
     //zawsze zwraca false jesli dlugosc przekazanego numeru konta jest różna od zadanej
-    static boolean checkSum (String accountNumber) {
+    static boolean checkSum(String accountNumber) {
 
         //niepotrzebne
         //if (accountNumber.length() != NO_OF_ACC_DIGITS) throw new IllegalArgumentException("Nr konta musi miec 9 znakow : " + accountNumber);
@@ -27,16 +27,17 @@ class AccountNumber {
         }
     }
 
-    public static boolean isValidIntegerN (String accountNumber) {
+    public static boolean isValidIntegerN(String accountNumber) {
         String regex = "[0-9]{" + NO_OF_ACC_DIGITS + "}";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(accountNumber);
-        if(m.find() && m.group().equals(accountNumber))
+        if (m.find() && m.group().equals(accountNumber))
             return true;
         else
             return false;
     }
 
+//
 //    public static int getNoOfAccDigits() {
 //        return NO_OF_ACC_DIGITS;
 //    }
