@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 class AccountNumber {
 
     //ilosc cyfr skladajacych sie na numer konta
@@ -10,7 +13,7 @@ class AccountNumber {
         //niepotrzebne
         //if (accountNumber.length() != NO_OF_ACC_DIGITS) throw new IllegalArgumentException("Nr konta musi miec 9 znakow : " + accountNumber);
 
-        if (accountNumber.length() != NO_OF_ACC_DIGITS) return false;
+        if (!isValidIntegerN(accountNumber)) return false;
         else {
             int digit;
             int chksum = 0;
@@ -18,14 +21,23 @@ class AccountNumber {
             for (int i = 0; i < NO_OF_ACC_DIGITS; i++) {
                 digit = Integer.parseInt(accountNumber.substring(NO_OF_ACC_DIGITS - 1 - i, NO_OF_ACC_DIGITS - i));
                 chksum += (i + 1) * digit;
-                //System.out.println(digit + " " + chksum); //tylko w celach testowych
             }
 
             return chksum % 11 == 0;
         }
     }
 
-    public static int getNoOfAccDigits() {
-        return NO_OF_ACC_DIGITS;
+    public static boolean isValidIntegerN (String accountNumber) {
+        String regex = "[0-9]{" + NO_OF_ACC_DIGITS + "}";
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(accountNumber);
+        if(m.find() && m.group().equals(accountNumber))
+            return true;
+        else
+            return false;
     }
+
+//    public static int getNoOfAccDigits() {
+//        return NO_OF_ACC_DIGITS;
+//    }
 }
